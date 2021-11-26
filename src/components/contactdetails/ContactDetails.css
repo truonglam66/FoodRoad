@@ -45,14 +45,24 @@ td.contact-table{
 
   .btn-send{
     color: #ffffff;
-    background-color: rgb(209, 18, 18);
+    background-color: rgb(12, 141, 102);
     width: 78px;
     height: 32px;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-send:hover{
+    background-color: rgb(65, 158, 130);
   }
 
   .text-lean{
     font-style: oblique;    
     font-family: 'roboto';
+}
+
+.notify-error{
+  position: relative;
+  display: block;
 }

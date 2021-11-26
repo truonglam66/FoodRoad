@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import "./ReviewDetails.css"
 import {FaMapMarkerAlt, FaSearch, FaCircle, FaRegCircle} from "react-icons/fa"
-import { Rating } from '@material-ui/core'
-import { Box } from '@material-ui/system'
+import Rating from '@mui/material/Rating'
+import Box from '@mui/material/Box';
 import ExpandableContent from './ExpandableContent'
 
 const labels ={

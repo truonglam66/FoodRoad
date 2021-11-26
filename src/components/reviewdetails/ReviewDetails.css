@@ -274,6 +274,7 @@ a.locationName:visited{
     text-overflow: ellipsis;
     white-space: nowrap;
     font: 700 16px "Trip Sans VF", "Trip Sans", Arial, sans-serif;
+    color: rgb(12, 141, 102);
 }
 
 .primaryButton{

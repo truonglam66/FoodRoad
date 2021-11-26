@@ -22,12 +22,12 @@
     left: 140px;
     text-align: left;
     color: #000000;
-    font-size: large;
     font-family: 'PT Sans', sans-serif;
     width: auto;
     height: auto;
     margin-bottom: 50px;
-    
+    font-size: medium;
+    font-weight: normal;
   }
   
   th {
@@ -35,6 +35,11 @@
     width: 7cm;
     text-align: center;
     padding-bottom: 100px;
+    cursor: default;
+  }
+
+  th:hover{
+    box-shadow: 1px 1px 20px 1px grey;
   }
 
   td {
@@ -44,17 +49,18 @@
     width: 7cm;
     vertical-align: top;
     background-color: #f5f5f5;
+    cursor: default;
   }
   
   .icon{
     position: inherit;
-    color:brown;
+    color:rgb(65, 158, 130);
     size: 1cm;
   }
   
   .title{
     color: #000000;
-    background-color:#ffff00;
+    background-color: rgb(12, 141, 102);
     font-size: xx-large;
     text-align: center;
     vertical-align: middle;
@@ -64,7 +70,13 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
-    padding-top: 200px;
+    margin-bottom: 10px;
+    padding-top: 40%;
+    cursor: default;
+  }
+
+  .title:hover{
+    background-color: rgb(65, 158, 130);
   }
   
   h3.about-h3{
@@ -75,21 +87,76 @@
     color: rgb(95, 95, 218);
   }
   
-  img.about-img{
+  img.manager-img{
     border-radius: 50%;
+    border: 1px solid rgb(12, 141, 102);
+    width: 200px;
+    margin-left: 30px;
+    margin-top: 25px;
+  }
+
+  img.tourguid-img{
+    border-radius: 50%;
+    border: 1px solid rgb(12, 141, 102);
+    width: 150px;
+  }
+  
+  img.manager-img:hover, img.tourguid-img:hover{
+    box-shadow: 0 0 2px 1px rgb(65, 158, 130);
   }
   
   .about-div{
     text-align: center;
   }
 
-  p {
+  p.pcontent {
     color: #000000;
-    font-size: medium;
+    margin-top: 10px;
+    line-height: 20px;
+    font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
   }
 
   .content{
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
+  }
+
+  .guides{
+    height: 12cm;
+    width: 21cm;
+  }
+
+  .guidinfo{
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding-left: 75px;
+    padding-top: 50px;
+  }
+
+  .name{
+    position: relative;
+    display: block;
+  }
+
+  .rectagle{
+    width: 720px;
+    height: 200px;
+    border: 1px solid rgb(66, 66, 66);
+    position: absolute;
+    left: 310px;
+    bottom: 150px;
+  }
+
+  .mission{
+    text-align: left;
+    text-indent: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 40px;
+    font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
+    font-weight: lighter;
   }

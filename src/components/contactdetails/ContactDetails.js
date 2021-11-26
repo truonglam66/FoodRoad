@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import './ContactDetails.css';
 import { FaMapMarker, FaPhoneSquareAlt, FaEnvelope, FaGlobeAsia, FaPaperPlane } from 'react-icons/fa';
 import Recaptcha from 'react-google-recaptcha';
+import {CircularProgress} from '@material-ui/core'
+
 
 class ContactDetails extends Component {
     constructor(props) {
@@ -9,24 +11,27 @@ class ContactDetails extends Component {
 
         this.contactSubmit = this.contactSubmit.bind(this);
         this.onloadCallback = this.recaptchaLoaded.bind(this);
-        this.verifyCallback = this.verifyCallback.bind(this);
+        this.verifyBack = this.verifyCallBack.bind(this);
 
         this.state = {
-            isVerified: true,
+            captcha: true,
             fields: {},
-            errors: {}
+            errors: {},
+            loading: false,
+            submitstr: ''
         }
+
     }
 
     recaptchaLoaded() {
         console.log('captcha successfully loaded');
     }
 
-    verifyCallback(response) {
-        if (response === true) {
+    verifyCallBack = (respone) => {
+        if(respone){
             this.setState({
-                isVerified: true
-            })
+                captcha: true,
+            });
         }
     }
 
@@ -38,20 +43,20 @@ class ContactDetails extends Component {
         //Name
         if (!fields["name"]) {
             formIsValid = false;
-            errors["name"] = "Cannot be empty";
+            errors["name"] = "*Name cannot be empty ";
         }
 
         if (typeof fields["name"] !== "undefined") {
-            if (!fields["name"].match(/^[a-zA-Z]+$/)) {
+            if (!fields["name"].match(/^[a-zA-Z ]+$/)) {
                 formIsValid = false;
-                errors["name"] = "Only letters";
+                errors["name"] = "*Only letters ";
             }
         }
 
         //Email
         if (!fields["email"]) {
             formIsValid = false;
-            errors["email"] = "Cannot be empty";
+            errors["email"] = "*Email cannot be empty ";
         }
 
         if (typeof fields["email"] !== "undefined") {
@@ -68,7 +73,7 @@ class ContactDetails extends Component {
                 )
             ) {
                 formIsValid = false;
-                errors["email"] = "Email is not valid";
+                errors["email"] = "*Email is not valid ";
             }
         }
 
@@ -78,22 +83,35 @@ class ContactDetails extends Component {
 
     contactSubmit(e) {
         e.preventDefault();
-
-        if (this.handleValidation()) {
-            if(this.state.isVerified)
-            {
-                alert("Form submitted");
-            }
-            else alert("Please verify that you are a human!")
-        } else {
-            alert("Form has errors.");
-        }
     }
 
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
         this.setState({ fields });
+    }
+
+    handleClick = () => {
+        this.setState({loading: true})
+
+        if (this.handleValidation()) {
+            if(this.state.isVerified)
+            {
+                setTimeout(() => {
+                    this.setState({submitstr: '*Form submitted'});
+                    this.setState({loading: false})
+                }, 3000);
+            }
+            else  
+            setTimeout(() => {
+                this.setState({submitstr: '*Please verify that you are a human!'});
+                this.setState({loading: false})
+            }, 1000);
+        } 
+        else setTimeout(() => {
+            this.setState({submitstr: '*Form has errors.'});
+            this.setState({loading: false})
+        }, 0);
     }
 
     render() {
@@ -132,6 +150,11 @@ class ContactDetails extends Component {
                                     className="contactform"
                                     onSubmit={this.contactSubmit.bind(this)}
                                 >
+                                    <div className="notify-error">
+                                    <span style={{ color: "red", fontSize: "16px"}}>{this.state.errors["name"]}</span>
+                                    <span style={{ color: "red", fontSize: "16px" }}>{this.state.errors["email"]}</span>
+                                    </div>
+                                    
                                     <input
                                         refs="name"
                                         type="text"
@@ -142,7 +165,7 @@ class ContactDetails extends Component {
                                         value={this.state.fields["name"]}
                                         style={{marginTop:"16px"}}
                                     />
-                                    <span style={{ color: "red", fontSize: "10px"}}>{this.state.errors["name"]}</span>
+                                    
                                     <input
                                         refs="email"
                                         type="text"
@@ -153,7 +176,7 @@ class ContactDetails extends Component {
                                         value={this.state.fields["email"]}
                                         className='textbox'
                                     />
-                                    <span style={{ color: "red" }}>{this.state.errors["email"]}</span>
+                                    
                                     <br />
                                     <input
                                         refs='subject'
@@ -175,16 +198,20 @@ class ContactDetails extends Component {
                                         style={{marginTop:"16px"}}
                                     />
                                     <Recaptcha
-                                        sitekey="6LdBYQwdAAAAABNyaYKSXfle0eYGVlqM95dl2ZQ_"
+                                        sitekey="6LcNdVMdAAAAAO42TxW4qVjkDz_cUTpRWDIw8U0n"
                                         render="explicit"
                                         onloadCallback={this.recaptchaLoaded}
-                                        verifyCallback={this.verifyCallback}
+                                        verifyCallback={this.verifyCallBack}
                                         style={{marginTop:"16px"}}
                                     />
-                                    <button onClick={""} type='submit' class='btn-send' id='btn send' style={{marginTop:"16px"}}>
-                                        <FaPaperPlane />
-                                        SEND
+                                    <button onClick={this.handleClick} loading={this.state.loading} disable={this.state.loading} type='submit' class='btn-send' id='btn send' style={{marginTop:"16px"}}>
+                                        <FaPaperPlane/>
+                                        {this.state.loading && <CircularProgress size={16} color="inherit" />}
+                                        {!this.state.loading && "SEND"}
                                     </button>
+                                    <span style={{color:"rgb(12, 141, 102)", fontSize:"14px", display:"block"}}>
+                                        {this.state.submitstr}
+                                    </span>
                                 </form>
                             </div>
                         </td>
