@@ -41,9 +41,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: inherit;
 }
-
+html {
+  font-family: "Roboto", sans-serif;
+}
 .home,
 .about,
 .tours,
@@ -58,6 +60,13 @@
 }
 
 .about {
+<<<<<<< HEAD
+=======
+  background-image: url("./assets/img/img-2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+>>>>>>> a3e74fe0c65c9682639b254709a9e1987859a286
   color: var(--main-bg);
   height: 100%;
   display: block;
@@ -111,7 +120,11 @@
 }
 
 .tours {
+<<<<<<< HEAD
   background-image: url('');
+=======
+  background-image: url("./assets/img/img-1.jpg");
+>>>>>>> a3e74fe0c65c9682639b254709a9e1987859a286
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
@@ -126,7 +139,11 @@
 }
 
 .sign-up {
+<<<<<<< HEAD
   background-image: url('');
+=======
+  background-image: url("./assets/img/img-9.jpg");
+>>>>>>> a3e74fe0c65c9682639b254709a9e1987859a286
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -134,11 +151,15 @@
   font-size: 100px;
 }
 .sign-in {
+<<<<<<< HEAD
   background-image: url('');
+=======
+  background-image: url("./assets/img/img-8.jpg");
+>>>>>>> a3e74fe0c65c9682639b254709a9e1987859a286
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  color:var(--main-bg);
+  color: var(--main-bg);
   font-size: 100px;
 }
 
